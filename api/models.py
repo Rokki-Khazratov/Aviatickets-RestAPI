@@ -1,4 +1,4 @@
-from django.db import models
+from django.db import models as m
 from django.utils import timezone
 
 TIME_CHOICES = [
@@ -15,20 +15,24 @@ CLASS_CHOICES = [
     (2, 'Business'),
 ]
 
-class Race(models.Model):
-    airline = models.CharField(max_length=100)
-    flight = models.CharField(max_length=12)
-    source_city = models.CharField(max_length=100)
-    departure_time = models.IntegerField(choices=TIME_CHOICES)
-    stops = models.PositiveSmallIntegerField(default=0)
-    arrival_time = models.IntegerField(choices=TIME_CHOICES)
-    destination_city = models.CharField(max_length=100)
-    class_type = models.IntegerField(choices=CLASS_CHOICES)
-    duration = models.FloatField()
-    day = models.DateField()
+class Race(m.Model):
+    airline = m.CharField(max_length=100)
+    flight = m.CharField(max_length=12)
+    source_city = m.CharField(max_length=100)
+    departure_time = m.IntegerField(choices=TIME_CHOICES)
+    stops = m.PositiveSmallIntegerField(default=0)
+    arrival_time = m.IntegerField(choices=TIME_CHOICES)
+    destination_city = m.CharField(max_length=100)
+    class_type = m.IntegerField(choices=CLASS_CHOICES)
+    duration = m.FloatField()
+    day = m.DateField()
+    price = m.IntegerField()
 
     @property
     def display_days_left(self):
         today = timezone.now().date()
         remaining_days = (self.day - today).days
-        return remaining_days
+        return remaining_days if remaining_days >= 0 else 0 
+
+    def __str__(self):
+        return f"{self.airline} - {self.flight}"
