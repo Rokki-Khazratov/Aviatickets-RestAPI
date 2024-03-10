@@ -1,5 +1,7 @@
 from django.contrib import admin
-from .models import Race
+from .models import Race,Airline
+
+admin.site.register(Airline)
 
 
 @admin.register(Race)
