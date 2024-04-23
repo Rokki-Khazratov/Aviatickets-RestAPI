@@ -4,7 +4,7 @@ from django.utils import timezone
 TIME_CHOICES = [
     (1, 'Early_morning'),
     (2, 'Morning'),
-    (3, 'Day'),
+    (3, 'Afternoon'),
     (4, 'Evening'),
     (5, 'Night'),
     (6, 'Late_Night'),
@@ -16,9 +16,9 @@ CLASS_CHOICES = [
 ]
 
 STOPS_CHOICES = [
-    (0, '0'),
-    (1, '1'),
-    (2, 'Two and more'),
+    (0, 'zero'),
+    (1, 'one'),
+    (2, 'two and more'),
 ]
 
 class Airline(m.Model):
