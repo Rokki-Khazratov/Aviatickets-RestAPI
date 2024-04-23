@@ -1,7 +1,9 @@
 from django.contrib import admin
-from .models import Race,Airline
+from .models import City, Race,Airline
 
 admin.site.register(Airline)
+admin.site.register(City)
+# admin.site.register(Race)
 
 
 @admin.register(Race)
