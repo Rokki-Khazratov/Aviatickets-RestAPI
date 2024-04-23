@@ -8,7 +8,7 @@ admin.site.register(City)
 
 @admin.register(Race)
 class RaceAdmin(admin.ModelAdmin):
-    list_display = ['flight','id','source_city','destination_city','day']
+    list_display = ['flight','id','source_city','destination_city']
 
     class Meta:
         model = Race

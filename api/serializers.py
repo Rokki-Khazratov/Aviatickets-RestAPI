@@ -9,10 +9,12 @@ class AirlineSerializer(serializers.ModelSerializer):
 
 class RaceSerializer(serializers.ModelSerializer):
     airline = serializers.CharField(source='airline.name')
+    source_city = serializers.SerializerMethodField()
+    departure_time = serializers.SerializerMethodField()
     arrival_time = serializers.SerializerMethodField()
     destination_city = serializers.SerializerMethodField()
     class_type = serializers.SerializerMethodField()
-    days_left = serializers.ReadOnlyField()
+    # days_left = serializers.ReadOnlyField()
 
     class Meta:
         model = Race
@@ -27,10 +29,22 @@ class RaceSerializer(serializers.ModelSerializer):
             'destination_city',
             'class_type',
             'duration',
-            'day',
+            # 'day',
             'days_left',
             'price'
         ]
+        # extra_kwargs = {
+        #     'day': {'format': '%Y-%m-%d'}
+        # }
+
+    def get_source_city(self, obj):
+        return obj.source_city.name
+
+    def get_departure_time(self, obj):
+        for code, name in TIME_CHOICES:
+            if code == obj.departure_time:
+                return name
+        return None
 
     def get_arrival_time(self, obj):
         for code, name in TIME_CHOICES:
@@ -48,21 +62,22 @@ class RaceSerializer(serializers.ModelSerializer):
         return None
 
 
-class PostRaceSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Race
-        fields = [
-            'id',
-            'airline',
-            'flight',
-            'source_city',
-            'departure_time',
-            'stops',
-            'arrival_time',
-            'destination_city',
-            'class_type',
-            'duration',
-            'day',
-            'display_days_left',
-            'price'
-        ]
+
+# class PostRaceSerializer(serializers.ModelSerializer):
+#     class Meta:
+#         model = Race
+#         fields = [
+#             'id',
+#             'airline',
+#             'flight',
+#             'source_city',
+#             'departure_time',
+#             'stops',
+#             'arrival_time',
+#             'destination_city',
+#             'class_type',
+#             'duration',
+#             # 'day',
+#             # 'days_left',
+#             'price'
+#         ]
