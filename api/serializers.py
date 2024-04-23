@@ -8,7 +8,7 @@ class AirlineSerializer(serializers.ModelSerializer):
         fields = ['name']
 
 class RaceSerializer(serializers.ModelSerializer):
-    airline = AirlineSerializer()
+    airline = serializers.CharField(source='airline.name') 
     display_days_left = serializers.ReadOnlyField()
 
     class Meta:
