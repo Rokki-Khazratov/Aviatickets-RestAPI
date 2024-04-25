@@ -1,2 +1,22 @@
+# Ignore Docker-related files
 docker-compose.yml
-Dockerfile
+.dockerignore
+.docker/
+
+# Ignore local development environment files
+.env
+.env.*
+
+# Ignore Docker image and container data
+*.tar
+*.tar.gz
+*.zip
+*.gz
+*.bz2
+*.xz
+*.7z
+*.iso
+*.img
+
+# Ignore Docker log files
+*.log
