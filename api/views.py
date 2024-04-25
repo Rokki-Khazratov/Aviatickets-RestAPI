@@ -4,11 +4,11 @@ from .prediction import PredictRaceSerializer
 from .serializers import RaceSerializer
 from rest_framework.response import Response
 from rest_framework import generics
+
 from sklearn.compose import ColumnTransformer
 from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import OneHotEncoder,StandardScaler
 from sklearn.ensemble import RandomForestRegressor
-
 import pandas as pd
 import pickle
 

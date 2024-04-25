@@ -1,3 +1,4 @@
+pandas
 asgiref==3.7.2
 certifi==2024.2.2
 cffi==1.16.0
@@ -10,3 +11,4 @@ djangorestframework==3.14.0
 pillow==10.2.0
 requests==2.31.0
 whitenoise==6.6.0
+scikit-learn==1.2.2
